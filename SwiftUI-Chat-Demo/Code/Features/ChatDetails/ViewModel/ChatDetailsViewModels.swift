@@ -28,6 +28,7 @@ class ChatDetailsViewModels: BaseViewModel {
         ChatDetailsService().getHistory() { result in
             switch result {
             case .success(let messages):
+                
                 // Sorting messages by their IDs before assigning
                 self.messages = messages.sorted(by: { message1, message2 in
                     message1.getCreatedAt < message2.getCreatedAt
@@ -39,11 +40,18 @@ class ChatDetailsViewModels: BaseViewModel {
     }
     
     // Sets up the socket connection.
-    func setSocketConnection(chatId: String) {
+    func setSocketConnection() {
         socketIO.socketConnection { isSuccess in
             self.isSocketConnected = isSuccess
         }
-        socketIO.addEventListeners(chatId: chatId)
+        socketIO.addEventListeners(){ result in
+            switch result {
+            case .success(let success):
+                self.getChatHistory();
+            case .failure(let message, let code): break
+                
+            }
+        }
     }
     
     /// Sends a message to the specified chat room.
@@ -52,13 +60,14 @@ class ChatDetailsViewModels: BaseViewModel {
     ///   - message: The message to be sent.
     func sendMessage(chatRooms: String, message: String) {
         let message = Messages(body: message,sender: AppUtilities.getFirebaseID(),channel_name: "test",chat_type: "text")
-        ChatDetailsService().sendMessage(message: message) { result in
-            switch result {
-            case .success(let success):
-                self.getChatHistory();
-            case .failure(let message, let code): break
-                
-            }
-        }
+        socketIO.sendMessage(message: message)
+        //        ChatDetailsService().sendMessage(message: message) { result in
+        //            switch result {
+        //            case .success(let success):
+        //                self.getChatHistory();
+        //            case .failure(let message, let code): break
+        //
+        //            }
+        //        }
     }
 }

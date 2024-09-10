@@ -11,6 +11,7 @@ import FirebaseAuth
 struct HomeUIView: View {
     // ViewModel to manage data and logic related to chat users
     @StateObject private var viewModel = RoomViewModels()
+    @StateObject private var viewModels = ChatDetailsViewModels()
     // State variables to control alert presentation for blocking and reporting users
     @State var blockAlert = false
     @State var reportAlert = false
@@ -83,10 +84,7 @@ struct HomeUIView: View {
         .navigationBarBackButtonHidden(true)
         .onAppear {
             viewModel.getRoomUser()
-            let user = Auth.auth().currentUser
-            if let user = user {
-                print(user.uid)
-            }
+            viewModels.setSocketConnection()
         }
     }
 }

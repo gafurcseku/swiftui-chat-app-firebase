@@ -115,7 +115,7 @@ struct ChatDetailsView: View {
         .navigationBarBackButtonHidden(true)
         .onAppear {
             viewModels.getChatHistory()
-            viewModels.setSocketConnection(chatId: person.getID)
+            viewModels.setSocketConnection()
         }
     }
 }

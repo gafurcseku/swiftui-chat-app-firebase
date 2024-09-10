@@ -7,6 +7,9 @@
 
 import Foundation
 import SocketIO
+import FirebaseFirestore
+import UIKit
+import UserNotifications
 
 /// Singleton class responsible for managing socket connections and sending messages.
 class SocketClient {
@@ -33,8 +36,7 @@ class SocketClient {
     /// - Parameter complete: A closure to be called when the connection is established.
     func socketConnection(complete: @escaping (Bool) -> Void) {
         if let socketURL = URL(string: Bundle.main.infoDictionary?["SocketUrl"] as? String  ?? "") {
-            let config: SocketIOClientConfiguration = [.log(true), .compress,.connectParams(["EIO": "3"])]
-            manager = SocketManager(socketURL: socketURL, config: config)
+            manager = SocketManager(socketURL: socketURL, config: nil)
             socket = manager?.defaultSocket
             
             // Event handlers for socket events
@@ -47,52 +49,88 @@ class SocketClient {
             socket?.on(clientEvent: .error) { (data, ack) in
                 if let errorStr = data.first as? String, errorStr.hasPrefix("ERR_SOCKETIO_INVALID_SESSION") {
                     self.manager?.disconnect()
-                    print("SocketClient: Error - \(errorStr)")
+                    debugPrint("SocketClient: Error - \(errorStr)")
                 }
             }
             
-            // Connect to the socket with payload (e.g., authentication token)
-            socket?.connect(withPayload: ["token": Bundle.main.infoDictionary?["SocketToken"] as? String ?? ""])
+            // Connect to the socket
+            socket?.connect()
         } else {
             complete(false)
         }
     }
     
     /// Adds event listeners to the specified chat room for receiving real-time events.
-    /// - Parameter chatRoom: The identifier of the chat room to listen for events.
     /// - Note: This function assumes that the socket is already connected.
-    func addEventListeners(chatId: String) {
+    func addEventListeners(completion: @escaping ResponseHandler<Bool>) {
         // Check if the socket is connected
-        if let socket = self.socket, socket.status == .connected {
+        if let socket = self.socket {
             // Add an event listener for the specified chat room
-            socket.on(chatId) { data, _ in
+            socket.on("firestore_inserted") { data, _ in
                 // Handle received event data (e.g., print or process data)
-                print("client => received event: \(data)")
+                debugPrint("client => received event: \(data)")
+                guard let firstItem = data.first else {
+                    debugPrint("No data received")
+                    completion(.failure("No data received", 404))
+                    return
+                }
+                if let dict = firstItem as? [String: Any] {
+                    if(dict["sender"] as! String != AppUtilities.getFirebaseID()){
+                        self.triggerNotification(body: dict["body"] as? String ?? "")
+                    }
+                    completion(.success(true))
+                }
             }
         }
     }
-
+    
+    func triggerNotification(body:String) {
+        let content = UNMutableNotificationContent()
+        content.title = "New Message!"
+        content.body = body
+        content.sound = UNNotificationSound.default
+        
+        //  Create a trigger (here, no trigger because we want to send immediately)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        // Add the notification request
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                debugPrint("Error adding notification: \(error)")
+            } else {
+                debugPrint("Notification sent!")
+            }
+        }
+    }
     
     /// Sends a message to the specified chat room.
     /// - Parameters:
-    ///   - chatRoom: The identifier of the chat room.
     ///   - message: The message to be sent.
-    func sendMessage(chatRoom: String, message: String) {
+    func sendMessage(message:Messages) {
         if let socket = self.socket, socket.status == .connected {
-            let data = ["color": "#4D55F0", "row": "1", "col": "0", "namespace": "namespace_1"] as [String : Any]
-            socket.emit("user-Selection", data)
-            socket.emitWithAck(chatRoom, message).timingOut(after: 0) { data in
-                // Handle acknowledgment data if necessary
+            let encoder = Firestore.Encoder()
+            do {
+                let encodedItem = try encoder.encode(message)
+                print(encodedItem)
+                socket.emitWithAck("insert_firestore", encodedItem).timingOut(after: 30) { data in
+                    // Handle acknowledgment data if necessary
+                    print(data)
+                }
+            }catch let error {
+                print(error)
             }
         } else {
             print("SocketClient: Socket is not connected")
         }
     }
     
-    /// Disconnects the socket manager when the SocketClient is deallocated.
-    deinit {
+    func disconnects() {
         if let manager = self.manager {
             manager.disconnect()
         }
+    }
+    
+    /// Disconnects the socket manager when the SocketClient is deallocated.
+    deinit {
+        disconnects()
     }
 }

@@ -26,8 +26,10 @@ class ChatDetailsService : BaseService {
             }
             do {
                 let messages = try documents.compactMap { document -> Messages? in
+                    print(document.data())
                     return try document.data(as: Messages.self)
                 }
+                print(messages)
                 completion(.success(messages))
             } catch let error {
                 completion(.failure(error.localizedDescription,404))

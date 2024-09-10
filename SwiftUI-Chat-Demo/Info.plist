@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>SocketUrl</key>
-	<string>https://socketio-whiteboard-zmx4.herokuapp.com</string>
+	<string>https://chat-server-38pa.onrender.com</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>PTSans-Regular.ttf</string>

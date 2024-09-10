@@ -21,7 +21,7 @@ struct Messages : Codable {
         case sender = "sender"
         case channel_name = "channel_name"
         case chat_type = "chat_type"
-        case createdAt = "createdAt"
+        case createdAt = "timestamp"
     }
 
     init(from decoder: Decoder) throws {
