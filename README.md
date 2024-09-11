@@ -4,7 +4,9 @@ This SwiftUI Chat Application is a simple yet powerful tool for enabling real-ti
 
 # **Application Video Demo**
 
-https://github.com/user-attachments/assets/4e62d41d-efb8-4883-a699-f051b5948ebb
+
+https://github.com/user-attachments/assets/b5e080d3-47ec-45ce-86dc-c1a68d056ee5
+
 
 
 
