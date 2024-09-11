@@ -2,6 +2,10 @@
 
 This SwiftUI Chat Application is a simple yet powerful tool for enabling real-time communication. It integrates Firebase for push notifications, allowing users to stay updated with new messages. FirebaseFirestore is used for securely storing and managing chat data. Additionally, the app leverages Socket.IO for real-time messaging, ensuring instant communication. Key features include a chat list, detailed chat view, and options to block or report individuals, promoting a safe and pleasant chatting environment..
 
+# **Application Video Demo**
+
+https://github.com/user-attachments/assets/4e62d41d-efb8-4883-a699-f051b5948ebb
+
 
 
 **Features**
