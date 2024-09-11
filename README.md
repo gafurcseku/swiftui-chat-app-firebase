@@ -36,14 +36,14 @@ In the chat details view:
 This setup ensures seamless real-time communication and notification updates across both the chat list and chat details views.
 
 ## Screenshots
-![Simulator Screenshot - iPhone 15 Pro - 2024-09-11 at 08 32 00](https://github.com/user-attachments/assets/6a23646d-4eea-4d36-89ee-28090023bb3b)
 
-<img src="https://github.com/user-attachments/assets/6a23646d-4eea-4d36-89ee-28090023bb3b" width=40% height=40%> <img src="https://github.com/user-attachments/assets/6a23646d-4eea-4d36-89ee-28090023bb3b" width=40% height=40%> 
+<img src="https://github.com/user-attachments/assets/6a23646d-4eea-4d36-89ee-28090023bb3b" width=40% height=40%> 
 
-<img src="https://github.com/gafurcseku/swiftUI-chat-app/assets/8382187/db8cafc7-8aea-42ba-b167-e62ebc540e3a" width=40% height=40%> <img src="https://github.com/gafurcseku/swiftUI-chat-app/assets/8382187/c7ef513d-0ab1-4a89-846a-a7d76aecc895" width=40% height=40%> 
+<img src="https://github.com/user-attachments/assets/c4bfa859-c534-400f-a77c-f7c9c04587ce" width=40% height=40%>
 
-<img src="https://github.com/gafurcseku/swiftUI-chat-app/assets/8382187/ece030ed-f43d-4a2d-ba40-8afc976dd829" width=40% height=40%>
+<img src="https://github.com/user-attachments/assets/3b024399-21d4-46a9-8001-5f98e2d1b92d" width=40% height=40%>
 
+<img src="https://github.com/user-attachments/assets/5be159d5-af51-45e5-996a-2334ba88128e" width=40% height=40%>
 
 ## Contributing
 
@@ -59,5 +59,5 @@ Special thanks to the SwiftUI community for their support and inspiration.
 
 ## About
 
-This application was created by **Md Abdul Gafur**. For inquiries, contact me at solution24hourexplorer@gmail.com.
+This application was created by **Md Abdul Gafur**. For inquiries, contact me at gafur0713@cseku.ac.bd.
 
