@@ -7,17 +7,19 @@
 
 import Foundation
 
-struct User : Codable {
-    let id : String?
-    let status : String?
-    let created_at : Int?
-    let full_name : String?
-    let profile_photo : String?
-    let last_message : String?
-    let channel_name : String?
-    
+/// A struct representing a user in the system, conforming to `Codable` to support encoding and decoding.
+/// This struct stores user-related information such as ID, status, name, profile photo, last message, and channel name.
+struct User: Codable {
+    let id: String?           // The unique ID of the user.
+    let status: String?       // The current status of the user (e.g., active, offline).
+    let created_at: Int?      // The creation timestamp of the user account (as an integer).
+    let full_name: String?    // The full name of the user.
+    let profile_photo: String? // URL or path to the user's profile photo.
+    let last_message: String? // The last message sent or received by the user.
+    let channel_name: String? // The name of the chat channel associated with the user.
+
+    /// Coding keys used for encoding and decoding from JSON or other formats.
     enum CodingKeys: String, CodingKey {
-        
         case id = "id"
         case status = "status"
         case created_at = "created_at"
@@ -27,6 +29,8 @@ struct User : Codable {
         case channel_name = "channel_name"
     }
     
+    /// Initializes a `User` instance by decoding from a `Decoder`.
+    /// - Parameter decoder: The decoder to extract data from.
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decodeIfPresent(String.self, forKey: .id)
@@ -38,53 +42,44 @@ struct User : Codable {
         channel_name = try values.decodeIfPresent(String.self, forKey: .channel_name)
     }
     
-    init(id: String? = nil, status: String? = nil, created_at: Int? = nil, full_name: String? = nil, profile_photo: String? = nil, last_message: String? = nil, channel_name : String? = nil) {
+    /// Custom initializer to create a `User` instance with optional parameters.
+    init(id: String? = nil, status: String? = nil, created_at: Int? = nil, full_name: String? = nil, profile_photo: String? = nil, last_message: String? = nil, channel_name: String? = nil) {
         self.id = id
         self.status = status
         self.created_at = created_at
         self.full_name = full_name
         self.profile_photo = profile_photo
         self.last_message = last_message
-        self.channel_name = channel_name 
+        self.channel_name = channel_name
     }
-    
-    
 }
 
+/// An extension for the `User` struct providing computed properties for safely accessing optional fields.
 extension User {
+    
+    /// Returns the user's ID, or an empty string if `id` is `nil`.
     var getID: String {
-        guard let id = id else {
-            return ""
-        }
-        return id
+        return id ?? ""
     }
-        
+    
+    /// Returns the user's status, or "N/A" if `status` is `nil`.
     var getStatus: String {
-        guard let status = status else {
-            return "N/A"
-        }
-        return status
+        return status ?? "N/A"
     }
-        
+    
+    /// Returns the user's full name, or "N/A" if `full_name` is `nil`.
     var getFullName: String {
-        guard let fullName = full_name else {
-            return "N/A"
-        }
-        return fullName
+        return full_name ?? "N/A"
     }
     
+    /// Returns the user's profile photo URL, or "N/A" if `profile_photo` is `nil`.
     var getProfilePhoto: String {
-        guard let profilePhoto = profile_photo else {
-            return "N/A"
-        }
-        return profilePhoto
+        return profile_photo ?? "N/A"
     }
     
+    /// Returns the user's last message, or "N/A" if `last_message` is `nil`.
     var getLastMessage: String {
-        guard let lastMessage = last_message else {
-            return "N/A"
-        }
-        return lastMessage
+        return last_message ?? "N/A"
     }
 }
 

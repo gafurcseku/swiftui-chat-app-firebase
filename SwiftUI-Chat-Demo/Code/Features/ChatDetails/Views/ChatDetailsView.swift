@@ -14,7 +14,7 @@ struct ChatDetailsView: View {
     /// State variable for holding the message content.
     @State private var message: String = ""
     
-    /// State object for managing the view model of the chat room details.
+    /// State object for managing the view model of the chat  details.
     @StateObject private var viewModels = ChatDetailsViewModels()
     
     /// The user representing the person in the chat .
@@ -93,7 +93,7 @@ struct ChatDetailsView: View {
                         )
                         .accessibilityIdentifier("message_textField")
                     Button(action: {
-                        viewModels.sendMessage(chatRooms: person.getID, message: self.message)
+                        viewModels.sendMessage(message: self.message)
                         self.message = ""
                     }) {
                         Image("send_message_icon")
@@ -120,7 +120,7 @@ struct ChatDetailsView: View {
     }
 }
 
-// Preview of the ChatRoomsDetailsView for small chat list
+// Preview of the ChatsDetailsView for small chat list
 #Preview("SmallChatList") {
     NavigationStack {
         ChatDetailsView(person: .init(id: "97", full_name: "Bessie Knight", profile_photo: "https://randomuser.me/api/portraits/men/4.jpg"))

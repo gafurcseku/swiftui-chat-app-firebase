@@ -22,14 +22,13 @@ class ChatDetailsViewModels: BaseViewModel {
     /// Published property indicating the status of the socket connection.
     @Published var isSocketConnected: Bool = false
     
-    /// Fetches the chat history for the given chat ID.
-    /// - Parameter chatId: The ID of the chat room.
+    /// Fetches the chat history
     func getChatHistory() {
         ChatDetailsService().getHistory() { result in
             switch result {
             case .success(let messages):
                 
-                // Sorting messages by their IDs before assigning
+                // Sorting messages by their date before assigning
                 self.messages = messages.sorted(by: { message1, message2 in
                     message1.getCreatedAt < message2.getCreatedAt
                 })
@@ -54,11 +53,10 @@ class ChatDetailsViewModels: BaseViewModel {
         }
     }
     
-    /// Sends a message to the specified chat room.
+    /// Sends a message to the specified chat .
     /// - Parameters:
-    ///   - chatRooms: The name of the chat room.
     ///   - message: The message to be sent.
-    func sendMessage(chatRooms: String, message: String) {
+    func sendMessage(message: String) {
         let message = Messages(body: message,sender: AppUtilities.getFirebaseID(),channel_name: "test",chat_type: "text")
         socketIO.sendMessage(message: message)
         //        ChatDetailsService().sendMessage(message: message) { result in

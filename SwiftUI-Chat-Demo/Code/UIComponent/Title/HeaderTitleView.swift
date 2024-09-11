@@ -1,3 +1,10 @@
+//
+//  AppUtilities.swift
+//  SwiftUI-Chat-Demo
+//
+//  Created by Md Abdul Gafur on 10/9/24.
+//
+
 import SwiftUI
 
 /// A view representing a header title with optional back button functionality.

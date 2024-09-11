@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Represents a row view for a person in a chat room.
+/// Represents a row view for a person in a chat.
 struct PersonRowView: View {
     /// The user representing the person.
     var person: User

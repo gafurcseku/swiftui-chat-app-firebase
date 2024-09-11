@@ -10,7 +10,7 @@ import FirebaseAuth
 // SwiftUI View struct for displaying a list of chat users and providing options to block or report users.
 struct HomeUIView: View {
     // ViewModel to manage data and logic related to chat users
-    @StateObject private var viewModel = RoomViewModels()
+    @StateObject private var viewModel = HomeViewModels()
     @StateObject private var viewModels = ChatDetailsViewModels()
     // State variables to control alert presentation for blocking and reporting users
     @State var blockAlert = false
@@ -23,14 +23,14 @@ struct HomeUIView: View {
                 // Custom header title view
                 HeaderTitleView(text: "Chats", enableBack: false)
                 // Display error message if loading chat users fails
-                if(viewModel.chatRoomFail) {
+                if(viewModel.chatFail) {
                     VStack(alignment: .center, spacing: 10) {
                         Image(systemName: "xmark.icloud.fill")
                             .resizable().frame(width: 50, height: 50)
-                        Text("Unable to load Chat Rooms")
+                        Text("Unable to load Chat recent chat")
                             .modifier(PTSansBoldTextModifier(fontSize: 22))
                         // Retry button to attempt loading chat users again
-                        Button(action: { viewModel.getRoomUser() }) {
+                        Button(action: { viewModel.getChatUsers() }) {
                             Text("Retry")
                                 .modifier(PTSansBoldTextModifier(fontSize: 24))
                                 .foregroundColor(.black)
@@ -83,7 +83,7 @@ struct HomeUIView: View {
         .zIndex(2)
         .navigationBarBackButtonHidden(true)
         .onAppear {
-            viewModel.getRoomUser()
+            viewModel.getChatUsers()
             viewModels.setSocketConnection()
         }
     }

@@ -1,43 +1,50 @@
 //
-//  RemoteImage.swift
-//  SwiftUI-Chat-App
+//  AppUtilities.swift
+//  SwiftUI-Chat-Demo
 //
-//  Created by RootNext15 on 6/3/24.
+//  Created by Md Abdul Gafur on 10/9/24.
 //
 
 import SwiftUI
 
+/// A struct that provides remote image loading functionality with different shapes (Circle and Rectangle).
 public struct RemoteImage {
     
-    public  struct CircleImage: View {
-        public var url = URL(string: "https://picsum.photos/200")
+    /// A substructure that displays a remote image in a circular shape.
+    public struct CircleImage: View {
+        public var url = URL(string: "https://picsum.photos/200")  // Default image URL.
         
-        public init(url:URL? = URL(string: "https://picsum.photos/200")) {
+        /// Initializes the `CircleImage` view with an optional custom URL.
+        /// - Parameter url: The URL of the image to display (default is a sample URL).
+        public init(url: URL? = URL(string: "https://picsum.photos/200")) {
             self.url = url
         }
         
+        /// The body of the view displaying the image loaded asynchronously, clipped into a circular shape.
         public var body: some View {
-            AsyncImage(url: url,content: view)
-                .clipShape(Circle())
+            AsyncImage(url: url, content: view)  // Loads the image asynchronously from the given URL.
+                .clipShape(Circle())             // Clips the image into a circular shape.
         }
-        
     }
     
-    public  struct RectangleImage: View {
-        public var url = URL(string: "https://picsum.photos/200")
+    /// A substructure that displays a remote image in a rectangular shape.
+    public struct RectangleImage: View {
+        public var url = URL(string: "https://picsum.photos/200")  // Default image URL.
         
-        public init(url:URL? = URL(string: "https://picsum.photos/200")) {
+        /// Initializes the `RectangleImage` view with an optional custom URL.
+        /// - Parameter url: The URL of the image to display (default is a sample URL).
+        public init(url: URL? = URL(string: "https://picsum.photos/200")) {
             self.url = url
         }
         
+        /// The body of the view displaying the image loaded asynchronously, clipped into a rectangular shape.
         public var body: some View {
-            AsyncImage(url: url,content: view)
-                .clipShape(Rectangle())
+            AsyncImage(url: url, content: view)  // Loads the image asynchronously from the given URL.
+                .clipShape(Rectangle())          // Clips the image into a rectangular shape.
         }
-        
     }
-    
 }
+
 
 @ViewBuilder
 private func view(for phase: AsyncImagePhase) -> some View {

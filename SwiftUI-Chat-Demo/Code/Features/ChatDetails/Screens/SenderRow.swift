@@ -1,3 +1,10 @@
+//
+//  Messages.swift
+//  SwiftUI-Chat-Demo
+//
+//  Created by Md Abdul Gafur on 10/9/24.
+//
+
 import SwiftUI
 
 /// Represents a view for displaying a message sent by the current user.

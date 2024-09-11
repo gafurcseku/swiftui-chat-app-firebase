@@ -7,10 +7,10 @@
 
 import Foundation
 
-/// Service class responsible for fetching chat room data from the API.
+/// Service class responsible for fetching chat user data from the Firebase.
 class ChatUsersService : BaseService {
     
-    /// Function to retrieve the list of users in the chat rooms.
+    /// Function to retrieve the list of users in the chat .
     /// - Parameter completion: Closure to handle the response containing either the list of users or an error.
     func getUsers(completion: @escaping ResponseHandler<[User]>) {
         db.collection("rooms").whereField("id", isNotEqualTo: AppUtilities.getFirebaseID()).getDocuments { (snapshot, error) in

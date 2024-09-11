@@ -25,7 +25,7 @@
 		0906294E2C901F080042CA90 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0906294C2C901F080042CA90 /* Font+Extensions.swift */; };
 		0906294F2C901F080042CA90 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0906294D2C901F080042CA90 /* Color+Extensions.swift */; };
 		090629692C9022560042CA90 /* HomeUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090629682C9022560042CA90 /* HomeUIView.swift */; };
-		0906296C2C9022950042CA90 /* RoomViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0906296B2C9022950042CA90 /* RoomViewModels.swift */; };
+		0906296C2C9022950042CA90 /* HomeViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0906296B2C9022950042CA90 /* HomeViewModels.swift */; };
 		0906296F2C9023130042CA90 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0906296E2C9023130042CA90 /* BaseViewModel.swift */; };
 		090629722C9023B00042CA90 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090629712C9023B00042CA90 /* User.swift */; };
 		090629752C9028E10042CA90 /* AlertReportUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090629732C9028E10042CA90 /* AlertReportUserView.swift */; };
@@ -94,7 +94,7 @@
 		0906294C2C901F080042CA90 /* Font+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		0906294D2C901F080042CA90 /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		090629682C9022560042CA90 /* HomeUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUIView.swift; sourceTree = "<group>"; };
-		0906296B2C9022950042CA90 /* RoomViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModels.swift; sourceTree = "<group>"; };
+		0906296B2C9022950042CA90 /* HomeViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModels.swift; sourceTree = "<group>"; };
 		0906296E2C9023130042CA90 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		090629712C9023B00042CA90 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		090629732C9028E10042CA90 /* AlertReportUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertReportUserView.swift; sourceTree = "<group>"; };
@@ -152,7 +152,6 @@
 				0906294B2C901EE70042CA90 /* Extensions */,
 				0906292A2C901A870042CA90 /* UIComponent */,
 				0906291F2C9004DA0042CA90 /* Notification Manager */,
-				0906291B2C9002620042CA90 /* Model */,
 				0906291A2C9002560042CA90 /* Features */,
 			);
 			path = Code;
@@ -167,13 +166,6 @@
 				0906291C2C90026C0042CA90 /* Chats */,
 			);
 			path = Features;
-			sourceTree = "<group>";
-		};
-		0906291B2C9002620042CA90 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0906291C2C90026C0042CA90 /* Chats */ = {
@@ -311,7 +303,7 @@
 		0906296A2C90227D0042CA90 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				0906296B2C9022950042CA90 /* RoomViewModels.swift */,
+				0906296B2C9022950042CA90 /* HomeViewModels.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -616,7 +608,7 @@
 				0906298A2C9060E60042CA90 /* Messages.swift in Sources */,
 				090629F92C90B4180042CA90 /* SocketClient.swift in Sources */,
 				090629792C904CB10042CA90 /* ResponseHandler.swift in Sources */,
-				0906296C2C9022950042CA90 /* RoomViewModels.swift in Sources */,
+				0906296C2C9022950042CA90 /* HomeViewModels.swift in Sources */,
 				090629692C9022560042CA90 /* HomeUIView.swift in Sources */,
 				090629442C901B590042CA90 /* Shimmer.swift in Sources */,
 				0906293F2C901B590042CA90 /* ShimmerModifier.swift in Sources */,

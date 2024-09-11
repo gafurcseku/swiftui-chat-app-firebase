@@ -1,3 +1,10 @@
+//
+//  DashBoardUIView.swift
+//  SwiftUI-Chat-Demo
+//
+//  Created by Md Abdul Gafur on 10/9/24.
+//
+
 import SwiftUI
 import FirebaseAuth
 
@@ -11,7 +18,7 @@ struct LoginView: View {
     @State private var isLoggedIn: Bool = false
     
     var body: some View {
-        //@Environment(NavigationCoordinator.self) var coordinator: NavigationCoordinator
+        
         VStack() {
             Text("Login")
                 .font(.largeTitle)
@@ -85,7 +92,7 @@ struct LoginView: View {
             .navigationDestination(isPresented: self.$isLoggedIn) {
                 HomeUIView()
             }
-            // Show error if registration fails
+            // Show error if loginError fails
             if !loginError.isEmpty {
                 Text(loginError)
                     .foregroundColor(.red)
